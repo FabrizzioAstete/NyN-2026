@@ -1,0 +1,382 @@
+/* =========================================================
+   VozÁgil - Hoja de estilos
+   Diseño moderno, minimalista, con buen contraste
+   y adaptado a computadoras y celulares.
+   ========================================================= */
+
+/* ---------- Variables de color ---------- */
+:root {
+  --color-fondo: #f4f6fb;          /* Fondo general suave */
+  --color-tarjeta: #ffffff;        /* Fondo de tarjetas */
+  --color-primario: #3b5bdb;       /* Azul principal */
+  --color-primario-oscuro: #2f4ac0;
+  --color-activo: #e03131;         /* Rojo suave: micrófono activo */
+  --color-texto: #1f2430;          /* Texto principal (alto contraste) */
+  --color-texto-suave: #6b7280;    /* Texto secundario */
+  --color-borde: #dfe3ec;
+  --color-interim: #6b7280;        /* Texto provisional */
+  --radio: 14px;
+}
+
+/* ---------- Reset básico ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
+}
+
+/* ---------- Contenedor principal ---------- */
+.contenedor {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+
+/* ---------- Encabezado ---------- */
+.encabezado {
+  text-align: center;
+  padding: 24px 0 8px;
+}
+
+.logo {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--color-primario);
+  letter-spacing: 0.5px;
+}
+
+.descripcion {
+  margin-top: 8px;
+  font-size: 1.05rem;
+  color: var(--color-texto-suave);
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- Instrucciones ---------- */
+.instrucciones {
+  background: var(--color-tarjeta);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  padding: 18px 22px;
+  margin-top: 20px;
+}
+
+.instrucciones h2 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: var(--color-primario);
+}
+
+.instrucciones ol {
+  padding-left: 20px;
+  color: var(--color-texto);
+  font-size: 0.98rem;
+}
+
+.instrucciones li {
+  margin-bottom: 4px;
+}
+
+/* ---------- Controles (botón + indicador) ---------- */
+.controles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.boton-micro-contenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Botón grande de micrófono */
+.btn-microfono {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background-color: var(--color-primario);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(59, 91, 219, 0.35);
+  transition: transform 0.15s ease, background-color 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.btn-microfono:hover {
+  background-color: var(--color-primario-oscuro);
+  transform: scale(1.04);
+}
+
+.btn-microfono:focus-visible {
+  outline: 3px solid var(--color-primario-oscuro);
+  outline-offset: 4px;
+}
+
+.btn-microfono:active {
+  transform: scale(0.97);
+}
+
+.icono-microfono {
+  width: 48px;
+  height: 48px;
+}
+
+/* Estado activo: color rojo y animación de pulso */
+.btn-microfono.activo {
+  background-color: var(--color-activo);
+  box-shadow: 0 8px 24px rgba(224, 49, 49, 0.4);
+  animation: pulso 1.4s ease-in-out infinite;
+}
+
+@keyframes pulso {
+  0%   { box-shadow: 0 0 0 0 rgba(224, 49, 49, 0.5); }
+  70%  { box-shadow: 0 0 0 22px rgba(224, 49, 49, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(224, 49, 49, 0); }
+}
+
+.texto-botones {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-texto);
+}
+
+/* ---------- Indicador de estado ---------- */
+.indicador {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 1px solid var(--color-borde);
+  background: var(--color-tarjeta);
+  color: var(--color-texto-suave);
+}
+
+.indicador .punto {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #adb5bd;
+}
+
+/* Indicador activo */
+.indicador.activo {
+  color: var(--color-activo);
+  border-color: rgba(224, 49, 49, 0.4);
+  background: #fff5f5;
+}
+
+.indicador.activo .punto {
+  background-color: var(--color-activo);
+  animation: parpadeo 1s ease-in-out infinite;
+}
+
+@keyframes parpadeo {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+
+/* ---------- Mensajes de estado / error ---------- */
+.mensajes {
+  margin-top: 18px;
+  padding: 12px 16px;
+  border-radius: var(--radio);
+  font-size: 0.97rem;
+  font-weight: 500;
+  border: 1px solid;
+  text-align: center;
+}
+
+.mensajes[hidden] {
+  display: none;
+}
+
+/* Variante de error */
+.mensajes.error {
+  background: #fff5f5;
+  border-color: #ffc9c9;
+  color: #c92a2a;
+}
+
+/* Variante informativa */
+.mensajes.info {
+  background: #eef3ff;
+  border-color: #c3d0ff;
+  color: var(--color-primario-oscuro);
+}
+
+/* ---------- Transcripción ---------- */
+.transcripcion-contenedor {
+  margin-top: 24px;
+  background: var(--color-tarjeta);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  overflow: hidden;
+}
+
+.transcripcion-cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--color-borde);
+  background: #fafbfe;
+}
+
+.transcripcion-cabecera h2 {
+  font-size: 1.05rem;
+  color: var(--color-primario);
+}
+
+.leyenda {
+  font-size: 0.85rem;
+  color: var(--color-texto-suave);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.puntos-leyenda {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.puntos-leyenda.final {
+  background-color: var(--color-primario);
+}
+
+.puntos-leyenda.interim {
+  background-color: #adb5bd;
+  margin-left: 10px;
+}
+
+/* Área de texto amplia y legible */
+.transcripcion {
+  min-height: 260px;
+  max-height: 420px;
+  overflow-y: auto;
+  padding: 20px;
+  font-size: 1.3rem;           /* Texto grande y legible */
+  line-height: 1.7;
+  color: var(--color-texto);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.transcripcion .placeholder {
+  color: var(--color-texto-suave);
+  font-size: 1.05rem;
+  font-style: italic;
+}
+
+/* Texto reconocido (final) */
+.transcripcion .final {
+  color: var(--color-texto);
+}
+
+/* Texto provisional (en curso): visualmente diferenciado */
+.transcripcion .interim {
+  color: var(--color-interim);
+  font-style: italic;
+  background: #f1f3f9;
+  border-radius: 6px;
+  padding: 1px 4px;
+}
+
+/* ---------- Acciones (limpiar / copiar) ---------- */
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.btn-secundario {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-primario);
+  background: var(--color-tarjeta);
+  border: 2px solid var(--color-primario);
+  border-radius: var(--radio);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-secundario:hover {
+  background-color: var(--color-primario);
+  color: #ffffff;
+}
+
+.btn-secundario:focus-visible {
+  outline: 3px solid var(--color-primario-oscuro);
+  outline-offset: 3px;
+}
+
+/* ---------- Pie de página ---------- */
+.pie {
+  text-align: center;
+  margin-top: 36px;
+  font-size: 0.85rem;
+  color: var(--color-texto-suave);
+}
+
+/* ---------- Adaptación a celulares ---------- */
+@media (max-width: 560px) {
+  .logo {
+    font-size: 2rem;
+  }
+
+  .btn-microfono {
+    width: 92px;
+    height: 92px;
+  }
+
+  .icono-microfono {
+    width: 40px;
+    height: 40px;
+  }
+
+  .transcripcion {
+    font-size: 1.1rem;
+    min-height: 220px;
+    padding: 16px;
+  }
+
+  .transcripcion-cabecera {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .acciones {
+    flex-direction: column;
+  }
+
+  .btn-secundario {
+    width: 100%;
+  }
+}

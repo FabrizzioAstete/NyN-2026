@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VozÁgil - Transcripción de voz a texto</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <main class="contenedor">
+
+    <!-- Encabezado: nombre y descripción del proyecto -->
+    <header class="encabezado">
+      <h1 class="logo">🎙️ VozÁgil</h1>
+      <p class="descripcion">
+        Una herramienta que facilita la comunicación durante entrevistas
+        laborales mediante transcripción de voz a texto.
+      </p>
+    </header>
+
+    <!-- Instrucciones breves de uso -->
+    <section class="instrucciones" aria-label="Instrucciones de uso">
+      <h2>¿Cómo usarlo?</h2>
+      <ol>
+        <li>Presiona el botón del micrófono y permite el acceso cuando el navegador lo solicite.</li>
+        <li>Habla con claridad; el texto aparecerá en pantalla mientras la persona habla.</li>
+        <li>Presiona nuevamente el botón para detener la transcripción.</li>
+        <li>Usa los botones <strong>Limpiar</strong> o <strong>Copiar texto</strong> según necesites.</li>
+      </ol>
+    </section>
+
+    <!-- Controles principales -->
+    <section class="controles" aria-label="Controles de transcripción">
+
+      <!-- Botón grande para iniciar / detener la transcripción -->
+      <div class="boton-micro-contenedor">
+        <button id="btnMicrofono" class="btn-microfono" type="button"
+                aria-label="Iniciar transcripción" aria-pressed="false">
+          <!-- Icono de micrófono (SVG inline, sin dependencias) -->
+          <svg class="icono-microfono" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="23"></line>
+            <line x1="8" y1="23" x2="16" y2="23"></line>
+          </svg>
+        </button>
+        <span id="textoBoton" class="texto-botones">Iniciar transcripción</span>
+      </div>
+
+      <!-- Indicador visual del estado del micrófono -->
+      <div id="indicadorEstado" class="indicador inactivo" role="status" aria-live="polite">
+        <span class="punto" aria-hidden="true"></span>
+        <span id="textoEstado">Micrófono inactivo</span>
+      </div>
+
+    </section>
+
+    <!-- Mensajes de estado y errores del sistema -->
+    <div id="mensajes" class="mensajes" role="alert" aria-live="assertive" hidden></div>
+
+    <!-- Área amplia donde aparece la transcripción -->
+    <section class="transcripcion-contenedor" aria-label="Transcripción">
+      <div class="transcripcion-cabecera">
+        <h2>Transcripción del entrevistador</h2>
+        <p class="leyenda">
+          <span class="puntos-leyenda final"></span> Texto reconocido
+          <span class="puntos-leyenda interim"></span> Texto en curso
+        </p>
+      </div>
+      <div id="transcripcion" class="transcripcion" role="region"
+           aria-live="polite" aria-label="Texto transcrito">
+        <p class="placeholder">Aquí aparecerá el texto reconocido…</p>
+      </div>
+    </section>
+
+    <!-- Botones auxiliares: limpiar y copiar -->
+    <section class="acciones" aria-label="Acciones sobre la transcripción">
+      <button id="btnLimpiar" class="btn-secundario" type="button">🧹 Limpiar</button>
+      <button id="btnCopiar" class="btn-secundario" type="button">📋 Copiar texto</button>
+    </section>
+
+    <!-- Pie de página -->
+    <footer class="pie">
+      <p>VozÁgil · Prototipo de accesibilidad para entrevistas laborales</p>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
